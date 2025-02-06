@@ -1,7 +1,8 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import { useState, useContext, useEffect } from "react";
-import { useAuth } from "./context/AuthContext"; // Contexto de autenticación
-import ThemeProviderApi, { ThemeContextApi, useTheme } from "./theme/ThemeProvider"; // Importa el ThemeProvider
+import { useAuth } from "./context/AuthContext";
+import ThemeProviderApi, { ThemeContextApi, useTheme } from "./theme/ThemeProvider";
+import { lightTheme, darkTheme } from './theme/theme';
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
@@ -27,7 +28,7 @@ function AppContent() {
     <Router>
       <AppBar />
       <Button onClick={toggleTheme} variant="contained" color="primary">
-        Cambiar a {theme === "lightTheme" ? "Modo Oscuro" : "Modo Claro"}
+        Cambiar a {theme === lightTheme ? "Modo Oscuro" : "Modo Claro"}
       </Button>
       <Routes>
         <Route
