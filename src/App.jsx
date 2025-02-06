@@ -1,23 +1,34 @@
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
-import { useState } from 'react';
-import { useAuth } from './context/AuthContext'; // Importa el contexto de autenticación
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useState, useContext, useEffect } from "react";
+import { useAuth } from "./context/AuthContext"; // Contexto de autenticación
+import ThemeProviderApi, { ThemeContextApi, useTheme } from "./theme/ThemeProvider"; // Importa el ThemeProvider
 import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import About from "./pages/About";
 import ApiEnergy from "./pages/ApiEnergy";
 import NotFound from "./pages/NotFound";
-import AppBar from './components/Navbar';
-import ProtectedRoute from './components/ProtectedRoute';
+import AppBar from "./components/Navbar";
+import ProtectedRoute from "./components/ProtectedRoute";
+import Button from "@mui/material/Button";
 
-function App() {
+function AppContent() {
   const { user } = useAuth();
+  const { toggleTheme, theme } = useTheme();
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [errorLoginMessage, setErrorLoginMessage] = useState("");
 
+  useEffect(() => {
+    document.body.style.backgroundColor = theme.colors.background;
+    document.body.style.color = theme.colors.text;
+  }, [theme]);
+
   return (
     <Router>
       <AppBar />
+      <Button onClick={toggleTheme} variant="contained" color="primary">
+        Cambiar a {theme === "lightTheme" ? "Modo Oscuro" : "Modo Claro"}
+      </Button>
       <Routes>
         <Route
           path="/"
@@ -44,9 +55,17 @@ function App() {
             </ProtectedRoute>
           }
         />
-
       </Routes>
+      <Footer />
     </Router>
+  );
+}
+
+function App() {
+  return (
+    <ThemeProviderApi>
+      <AppContent />
+    </ThemeProviderApi>
   );
 }
 

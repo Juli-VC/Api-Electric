@@ -42,12 +42,12 @@ const Drawer = styled(MuiDrawer, { shouldForwardProp: (prop) => prop !== "open" 
             color: "whitesmoke",
             borderTopLeftRadius: isSmallScreen ? "0" : "90px",
             borderBottomLeftRadius: isSmallScreen ? "0" : "90px",
-            position: isSmallScreen ? "fixed" : "fixed", // Si es pequeña, fijamos la posición
-            top: isSmallScreen ? "70px" : "50%", // Ajusta este valor para que esté debajo del AppBar (64px si es estándar)
+            position: isSmallScreen ? "fixed" : "fixed",
+            top: isSmallScreen ? "85px" : "50%",
             left: isSmallScreen ? "0" : "2%",
             transform: isSmallScreen ? "none" : "translateY(-50%)",
             height: "auto",
-            padding: isSmallScreen ? 0 : "2% 0",
+            padding: isSmallScreen ? 0 : "1% 0",
             boxShadow: isSmallScreen ? "0px 4px 10px rgba(0,0,0,0.2)" : "-2px -1px rgba(26, 161, 51, 0.5)",
             overflowX: "hidden",
             transition: theme.transitions.create("width", {
@@ -69,12 +69,12 @@ const tabsDrawerNames = [
 
 export default function MiniDrawer({ showTab, setshowTab }) {
     const [open, setOpen] = useState(false);
-    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 768);
+    const [isSmallScreen, setIsSmallScreen] = useState(window.innerWidth < 600);
     const [isMenuOpen, setIsMenuOpen] = useState(false); // Para controlar el despliegue del menú en pantallas pequeñas.
 
     useEffect(() => {
         const handleResize = () => {
-            setIsSmallScreen(window.innerWidth < 768);
+            setIsSmallScreen(window.innerWidth < 600);
         };
 
         window.addEventListener("resize", handleResize);
