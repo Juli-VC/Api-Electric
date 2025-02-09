@@ -2,7 +2,8 @@ import React, { useState, useEffect } from "react";
 import { Line } from "react-chartjs-2";
 import { DatePicker, LocalizationProvider } from "@mui/x-date-pickers";
 import { AdapterDateFns } from "@mui/x-date-pickers/AdapterDateFns";
-import { Box, CircularProgress } from "@mui/material";
+import { Box, Button, CircularProgress } from "@mui/material";
+import { useTheme } from '../../../../theme/ThemeProvider';
 
 const GeneracionEvolucion = ({ startDate, endDate, selectedDate, }) => {
 
@@ -29,7 +30,7 @@ const GeneracionEvolucion = ({ startDate, endDate, selectedDate, }) => {
             },
         ],
     });
-
+    const { theme } = useTheme();
 
     useEffect(() => {
         setIsLoadingEvolutionGraph(true)
@@ -69,7 +70,7 @@ const GeneracionEvolucion = ({ startDate, endDate, selectedDate, }) => {
                         {
                             label: "Renovable",
                             data: renovableValues,
-                            borderColor: "#92d050",
+                            borderColor: "rgb(55, 181, 223)",
                             backgroundColor: "rgba(146, 208, 80, 0.2)",
                             fill: true,
                             tension: 0.4,
@@ -77,7 +78,7 @@ const GeneracionEvolucion = ({ startDate, endDate, selectedDate, }) => {
                         {
                             label: "No Renovable",
                             data: noRenovableValues,
-                            borderColor: "#666666",
+                            borderColor: "rgb(241, 171, 8)",
                             backgroundColor: "rgba(102, 102, 102, 0.2)",
                             fill: true,
                             tension: 0.4,
@@ -107,13 +108,14 @@ const GeneracionEvolucion = ({ startDate, endDate, selectedDate, }) => {
     ) : (
         <div>
             <h3>Evolución de la Generación Renovable y No Renovable</h3>
-            <p>`Datos obtenidos desde {startDate} al {endDate}`</p>
+            <p>Datos obtenidos desde {new Date(startDate).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })} al {new Date(endDate).toLocaleDateString('es-ES', { year: 'numeric', month: 'long', day: 'numeric' })}</p>
+
 
             {chartData.datasets.length > 0 ?
                 (<>
-                    <button onClick={handleUnitChangeEvolution} style={{ margin: "10px 0" }}>
-                        Cambiar a {unitChangeEvolution === 1 ? "Porcentaje (%)" : "GWh"}
-                    </button>
+                    <Button variant="contained" color="success" onClick={handleUnitChangeEvolution} style={{ margin: "10px 0" }}>
+                        Cambiar a {unitChangeEvolution === 1 ? "%" : "GWh"}
+                    </Button>
 
                     <Line
                         data={chartData}
@@ -135,11 +137,19 @@ const GeneracionEvolucion = ({ startDate, endDate, selectedDate, }) => {
                                         display: true,
                                         text: unitChangeEvolution === 1 ? "GWh" : "%",
                                     },
+                                    grid: {
+                                        display: true,
+                                        color: theme.colors.primary,
+                                    },
                                 },
                                 x: {
                                     title: {
                                         display: true,
                                         text: "Meses",
+                                    },
+                                    grid: {
+                                        display: true,
+                                        color: theme.colors.primary,
                                     },
                                 },
                             },

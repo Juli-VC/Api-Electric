@@ -32,6 +32,7 @@ import {
 } from "@mui/icons-material";
 import CardFeature from "../../CardFeature";
 import { BalanceNotes } from "./BalanceNotes";
+import { useTheme } from '../../../../theme/ThemeProvider';
 
 const iconMap = {
     "Eólica": <WindPowerIcon />,
@@ -53,18 +54,20 @@ const iconMap = {
     "Demanda en b.c.": <AddchartOutlinedIcon />
 };
 
+
 const BalanceTable = ({ startDate, endDate, dataByTitle }) => {
+    const { theme } = useTheme();
     return (
         <Grid container spacing={{ xs: 2, lg: 2 }} sx={{ justifyContent: { xs: "center", lg: "space-evenly" } }}>
             {/* Table  */}
             <Grid size={{ xs: 11, sm: 8, lg: "auto" }} sx={{ justifyContent: "center" }} >
                 <CardFeature sx={{ maxWidth: { xs: "auto", lg: 400 } }} cardContent={
-                    <TableContainer sx={{ color: "whitesmoke" }}>
+                    <TableContainer sx={{ color: theme.colors.text }}>
                         <Table stickyHeader>
                             <TableHead>
                                 <TableRow>
                                     {startDate && endDate && (
-                                        <TableCell align="right" style={{ color: "whitesmoke", backgroundColor: "transparent" }}>
+                                        <TableCell align="right" style={{ color: theme.colors.text, backgroundColor: "transparent" }}>
                                             {startDate} - {endDate}
                                         </TableCell>
                                     )}
@@ -74,12 +77,12 @@ const BalanceTable = ({ startDate, endDate, dataByTitle }) => {
                                 {dataByTitle && Object.entries(dataByTitle)?.map(([title, values], index) => (
                                     <React.Fragment key={index}>
                                         <TableRow >
-                                            <TableCell style={{ color: "limegreen", fontSize: "18px", fontWeight: 800 }}>{title}</TableCell>
+                                            <TableCell style={{ color: theme.colors.primary, fontSize: "18px", fontWeight: 800 }}>{title}</TableCell>
                                         </TableRow>
                                         {values?.map((dat, index) => (
                                             <TableRow key={index}>
-                                                <TableCell style={{ color: "whitesmoke" }}>{dat.tipo}</TableCell>
-                                                <TableCell align="right" style={{ color: "whitesmoke" }}>
+                                                <TableCell style={{ color: theme.colors.text }}>{dat.tipo}</TableCell>
+                                                <TableCell align="right" style={{ color: theme.colors.text }}>
                                                     {dat.valor[0]?.value ? parseInt(dat.valor[0].value / 1000).toLocaleString() : '0'}
                                                 </TableCell>
                                             </TableRow>
@@ -112,11 +115,11 @@ const BalanceTable = ({ startDate, endDate, dataByTitle }) => {
                                     height: "50%"
                                 },
                                 "&::-webkit-scrollbar-thumb": {
-                                    backgroundColor: "limegreen", // Color del "pulgar"
+                                    backgroundColor: theme.colors.primary, // Color del "pulgar"
                                     borderRadius: "14px", // Redondeo
                                 },
                                 "&::-webkit-scrollbar-thumb:hover": {
-                                    backgroundColor: "darkgray", // Color al pasar el mouse
+                                    backgroundColor: theme.colors.secondary, // Color al pasar el mouse
                                     width: "10px",
 
                                 },

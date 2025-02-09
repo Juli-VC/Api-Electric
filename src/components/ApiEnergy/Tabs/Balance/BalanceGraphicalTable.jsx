@@ -22,6 +22,7 @@ import Grid from '@mui/material/Grid2';
 import React from "react";
 import CardFeature from "../../CardFeature";
 import { BalanceNotes } from "./BalanceNotes";
+import { useTheme } from '../../../../theme/ThemeProvider';
 
 const iconMap = {
     "Eólica": <WindPowerIcon />,
@@ -45,6 +46,8 @@ const iconMap = {
 
 export const BalanceGraphicalTable = ({ dataByTitle, generacionTotal }) => {
     console.log("dataByTitle", dataByTitle);
+    const { theme } = useTheme();
+
     return (
         <>
             <Grid container spacing={1} sx={{
@@ -66,8 +69,6 @@ export const BalanceGraphicalTable = ({ dataByTitle, generacionTotal }) => {
                                             // size={{ xs: 10, sm: 6, md: 4 }}
                                             sx={{
                                                 bgcolor: "transparent",
-                                                borderRadius: 2,
-                                                boxShadow: 2,
                                                 textAlign: "center",
                                             }}
                                         >
@@ -122,7 +123,7 @@ export const BalanceGraphicalTable = ({ dataByTitle, generacionTotal }) => {
                                                                     borderRadius: 5,
                                                                     backgroundColor: "rgba(174, 171, 171, 0.28)",
                                                                     "& .MuiLinearProgress-bar": {
-                                                                        bgcolor: "limegreen",
+                                                                        bgcolor: theme.colors.primary,
                                                                     },
                                                                     mb: 2,
                                                                 }}
@@ -145,8 +146,6 @@ export const BalanceGraphicalTable = ({ dataByTitle, generacionTotal }) => {
                                     key={index}
                                     sx={{
                                         bgcolor: "transparent",
-                                        borderRadius: 2,
-                                        boxShadow: 2,
                                         textAlign: "center",
                                     }}
                                 >
@@ -227,8 +226,6 @@ export const BalanceGraphicalTable = ({ dataByTitle, generacionTotal }) => {
                                     key={index}
                                     sx={{
                                         bgcolor: "transparent",
-                                        borderRadius: 2,
-                                        boxShadow: 2,
                                         textAlign: "center",
                                     }}
                                 >
@@ -332,7 +329,7 @@ export const BalanceGraphicalTable = ({ dataByTitle, generacionTotal }) => {
                                         height: "50%"
                                     },
                                     "&::-webkit-scrollbar-thumb": {
-                                        backgroundColor: "limegreen", // Color del "pulgar"
+                                        backgroundColor: theme.colors.primary, // Color del "pulgar"
                                         borderRadius: "14px", // Redondeo
                                     },
                                     "&::-webkit-scrollbar-thumb:hover": {

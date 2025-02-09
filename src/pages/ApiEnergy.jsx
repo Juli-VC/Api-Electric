@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import PermanentDrawerLeft from '../components/ApiEnergy/PermanentDrawerLeft';
 import { Box, Grid, } from '@mui/material';
 import CardFeature from '../components/ApiEnergy/CardFeature';
 import Balance from '../components/ApiEnergy/Tabs/Balance'
@@ -15,7 +14,6 @@ export const ApiEnergy = () => {
 
     return (
         <>
-            {/* <PermanentDrawerLeft setshowTab={setshowTab} /> */}
             <MiniDrawer showTab={showTab} setshowTab={setshowTab} />
             <Box sx={{
                 margin: "auto", padding: {

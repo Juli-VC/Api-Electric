@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 import { Chart as ChartJS, CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend, layouts } from 'chart.js';
 import { Box } from '@mui/material';
+import { useTheme } from '../../../../theme/ThemeProvider';
 
 ChartJS.register(CategoryScale, LinearScale, BarElement, Title, Tooltip, Legend);
 
@@ -13,6 +14,7 @@ export const Demanda_PotenciaInstaladaChart = ({ selectedDate }) => {
 
     const startDate = `${selectedDate}-01-01T00:00`;
     const endDate = `${selectedDate}-12-31T23:59`;
+    const { theme } = useTheme();
 
     useEffect(() => {
         const fetchData = async () => {
@@ -88,7 +90,7 @@ export const Demanda_PotenciaInstaladaChart = ({ selectedDate }) => {
                 },
                 grid: {
                     display: true,
-                    color: "green",
+                    color: theme.colors.primary,
                 },
             },
             y: {
@@ -96,7 +98,7 @@ export const Demanda_PotenciaInstaladaChart = ({ selectedDate }) => {
                 stacked: true,
                 grid: {
                     display: true,
-                    color: "green",
+                    color: theme.colors.primary,
                 },
             },
         },

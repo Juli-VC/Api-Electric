@@ -14,6 +14,9 @@ import {
 } from "chart.js";
 import { BalanceNotes } from './Balance/BalanceNotes';
 import { Box, Button, ButtonGroup, CircularProgress, Divider, Stack } from '@mui/material';
+import { useTheme } from '../../../theme/ThemeProvider';
+
+
 ChartJS.register(ArcElement, Tooltip, Legend);
 
 export default function Balance() {
@@ -22,7 +25,7 @@ export default function Balance() {
     const [showTabView, setShowTabView] = useState(1); // 1 para tabla normal, 2 para gráfica
     const [dataByTitle, setDataByTitle] = useState({});
     const [generacionTotal, setGeneracionTotal] = useState(0);
-
+    const { theme } = useTheme();
     // Define columnas basadas en los años
     const startDate = "2024-01-01";
     const endDate = "2024-01-31";
@@ -114,12 +117,12 @@ export default function Balance() {
                         marginBottom: "35px",
                         paddingBottom: "10px",
                         borderBottom: "4px solid transparent",
-                        borderImage: "linear-gradient(to right, transparent 25%, limegreen 50%, transparent 75%) 1",
+                        borderImage: `linear-gradient(to right, transparent 25%, ${theme.colors.primary} 50%, transparent 75%) 1`,
 
-                    }} divider={<Divider orientation="vertical" flexItem sx={{ borderColor: "limegreen" }} />}
+                    }} divider={<Divider orientation="vertical" flexItem sx={{ borderColor: theme.colors.primary }} />}
                     aria-label="Change table or graphic" >
-                    <Button size='medium' variant={showTabView === 2 ? "outlined" : "contained"} color='success' onClick={() => setShowTabView(1)}>Tabla</Button>
-                    <Button size='medium' variant={showTabView !== 2 ? "outlined" : "contained"} color='success' onClick={() => setShowTabView(2)}>Gráfica</Button>
+                    <Button size='medium' variant={showTabView === 2 ? "outlined" : "contained"} color='info' onClick={() => setShowTabView(1)}>Tabla</Button>
+                    <Button size='medium' variant={showTabView !== 2 ? "outlined" : "contained"} color='info' onClick={() => setShowTabView(2)}>Gráfica</Button>
                 </Stack>
                 {/* TabsContent - Table / Graphic */}
                 {showTabView === 1 && <BalanceTable startDate={startDate} endDate={endDate} dataByTitle={dataByTitle} />}

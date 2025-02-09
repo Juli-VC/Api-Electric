@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Box, Typography, CircularProgress } from "@mui/material";
 import { Bar } from "react-chartjs-2";
 import DatePickerSimple from "../../DatePickerSimple";
+import { useTheme } from '../../../../theme/ThemeProvider';
 import {
     Chart as ChartJS,
     CategoryScale,
@@ -23,6 +24,7 @@ export const Demanda_Variation = ({ selectedDate }) => {
 
     const startDate = `${selectedDate}-01-01T00:00`;
     const endDate = `${selectedDate}-12-31T23:59`;
+    const { theme } = useTheme();
 
     useEffect(() => {
         setIsLoading(true);
@@ -112,6 +114,7 @@ export const Demanda_Variation = ({ selectedDate }) => {
                                         display: true,
                                         text: "Mes",
                                     },
+
                                 },
                                 y: {
                                     beginAtZero: false, // Permitir que el eje y tenga valores negativos
@@ -120,6 +123,10 @@ export const Demanda_Variation = ({ selectedDate }) => {
                                     title: {
                                         display: true,
                                         text: "%",
+                                    },
+                                    grid: {
+                                        display: true,
+                                        color: theme.colors.primary,
                                     },
                                 },
                             },

@@ -90,7 +90,7 @@ export const Generacion = () => {
                 Datos de Generación
             </Typography>
 
-            <Box mb={2} display="flex" justifyContent="center" >
+            <Box mb={5} mt={5} display="flex" justifyContent="center" >
                 <DatePickerSimple selectedDate={selectedDate} setSelectedDate={setSelectedDate} />
             </Box>
 
@@ -101,10 +101,10 @@ export const Generacion = () => {
                     </Box>
                 ) : (
                     <>
-                        <Grid container spacing={{ xs: 1, sm: 2, md: 3 }} >
+                        <Grid container spacing={{ xs: 1, sm: 2, md: 3 }}  >
                             {/* 3 cards infor energy (Eolic, solar, hydro) */}
                             <Grid size={{ xs: 12 }}>
-                                <Grid container spacing={1} justifyContent="center" >
+                                <Grid container spacing={1} justifyContent="space-evenly" >
                                     {["eolica", "solar", "hidraulica"].map((key, idx) => (
                                         <Grid xs={4} key={idx} p={0} height={"100%"} >
                                             <CardFeature key={idx} sx={{ display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center", }} cardContent={
@@ -126,7 +126,7 @@ export const Generacion = () => {
                                 </Grid>
                             </Grid>
                             {/* Graphic: Generation daily */}
-                            <Grid size={{ xs: 12, xl: 6 }}>
+                            <Grid size={{ xs: 12, xl: 6 }}   >
                                 <CardFeature cardContent={
                                     <>
                                         <Grid display="flex" justifyContent="space-between" alignItems="center" container spacing={2} mb={2}>
