@@ -3,8 +3,9 @@ export const lightTheme = {
     primary: "#1976D2", // Azul intenso
     secondary: "#D6024C", // Rojo fuerte
     background: "#FFFFFF", // Blanco puro
-    bgcolor: "#E4E8EA", // Gris claro translúcido
+    bgcolor: "transparent",
     navbsBgColor: "rgba(141, 207, 242, 0.69)",
+    navbsMiniBgColor: "rgba(141, 207, 242, 0.92)",
     text: "#000000", // Negro puro
     label: "#333333", // Gris oscuro
   },
@@ -18,7 +19,7 @@ export const darkTheme = {
     primary: "#00FF00", // Verde neón
     secondary: "#D6024C", // Rojo fuerte
     background: "linear-gradient(315deg, #2b4162 0%, #12100e 74%)",
-    bgcolor: "transparent", // Negro grisáceo profundo,
+    bgcolor: "transparent",
     navbsBgColor: "rgba(38, 36, 36, 0.32)",
     navbsMiniBgColor: "rgba(38, 36, 36, 0.92)",
     text: "#FFFFFF", // Blanco puro

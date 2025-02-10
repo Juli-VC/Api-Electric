@@ -38,11 +38,12 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
             sx={{
                 color: theme.colors.text,
                 py: 2,
-                px: { xs: 2, md: 10 },
+                px: { xs: 2, md: 6 },
                 mt: 4,
-                mx: { xs: 2, md: 30 },
+                mx: { xs: 2, md: "auto" },
+                maxWidth: "800px",
                 textAlign: "center",
-                background: theme.colors.background,
+                background: theme.colors.navbsMiniBgColor,
                 borderBottomLeftRadius: "40px",
                 borderBottomRightRadius: "40px",
                 borderTop: `1px solid ${theme.colors.primary}`,
@@ -73,9 +74,9 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
                     <Typography variant="body1">{notification}</Typography>
                 </Box>
             )}
-            <Grid container spacing={1} sx={{ display: "flex", justifyContent: "space-between" }}>
+            <Grid container spacing={0} sx={{ display: "flex", justifyContent: "space-between" }}>
                 {/* Usuarios válidos */}
-                <Grid size={{ xs: 12, lg: 8 }} >
+                <Grid size={{ xs: 12, lg: 9 }} >
                     <Typography variant="subtitle1" sx={{ mb: 1 }}>
                         Usuarios válidos
                     </Typography>
@@ -88,14 +89,20 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
                                     display: "flex",
                                     justifyContent: "space-between",
                                     alignItems: "center",
-                                    mb: 1,
-                                    p: 2,
-                                    bgcolor: theme.colors.bgcolor, // Usar la paleta del tema
-                                    color: theme.colors.text, // Usar color de éxito
+                                    mb: 0,
+                                    p: 1,
+                                    bgcolor: theme.colors.bgcolor,
+                                    color: theme.colors.text,
                                     borderRadius: 2,
                                 }}
                             >
-                                <Box>
+                                <Box sx={{
+                                    display: "flex",
+                                    flexDirection: "row",
+                                    justifyContent: "space-between",
+                                    alignItems: "center",
+                                    bgcolor: theme.colors.bgcolor,
+                                }}>
                                     <Tooltip title="Copiar usuario">
                                         <Typography
                                             variant="body1"
@@ -129,7 +136,7 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
                 </Grid>
 
                 {/* Usuario inválido */}
-                <Grid size={{ xs: 12, lg: 4 }} >
+                <Grid size={{ xs: 12, lg: 3 }} >
                     <Typography variant="subtitle1" sx={{ mb: 1 }}>
                         Usuario incorrecto
                     </Typography>
@@ -140,20 +147,25 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
                                 key={index}
                                 sx={{
                                     display: "flex",
-                                    justifyContent: "space-between",
+                                    flexDirection: "column",
+                                    justifyContent: "center",
                                     alignItems: "center",
-                                    mb: 1,
-                                    p: 2,
-                                    bgcolor: theme.colors.background, // Usar la paleta del tema
-                                    color: "darkred", // Usar color de error
+                                    bgcolor: theme.colors.bgcolor,
+                                    color: "darkred",
                                     borderRadius: 2,
                                 }}
                             >
-                                <Box>
+                                <Box sx={{
+                                    display: "flex",
+                                    flexDirection: "column",
+                                    justifyContent: "center",
+                                    alignItems: "center",
+                                    marginBottom: "10px"
+                                }}>
                                     <Tooltip title="Copiar usuario">
                                         <Typography
                                             variant="body1"
-                                            sx={{ display: "inline", cursor: "pointer", mr: 1 }}
+                                            sx={{ display: "inline", cursor: "pointer", }}
                                             onClick={() => handleCopy(user.username)}
                                         >
                                             Usuario: <strong>{user.username}</strong>
@@ -162,7 +174,7 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
                                     <Tooltip title="Copiar contraseña">
                                         <Typography
                                             variant="body1"
-                                            sx={{ display: "inline", cursor: "pointer", ml: 1 }}
+                                            sx={{ display: "inline", cursor: "pointer", }}
                                             onClick={() => handleCopy(user.password)}
                                         >
                                             Contraseña: <strong>{user.password}</strong>
