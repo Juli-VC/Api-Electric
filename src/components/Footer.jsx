@@ -1,9 +1,11 @@
 import React, { useState } from "react";
-import { Box, Typography, Grid, Button, Tooltip } from "@mui/material";
+import { Box, Typography, Button, Tooltip } from "@mui/material";
+import Grid from '@mui/material/Grid2';
 import ContentCopyIcon from "@mui/icons-material/ContentCopy";
 import CheckCircleIcon from "@mui/icons-material/CheckCircle";
 import ErrorIcon from "@mui/icons-material/Error";
 import { useAuth } from "../context/AuthContext";
+import { useTheme } from "../theme/ThemeProvider";
 
 const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
     const users = [
@@ -13,6 +15,7 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
         { username: "invalid_user", password: "wrongPass123", valid: false },
     ];
     const [notification, setNotification] = useState("");
+    const { theme } = useTheme(); // Obtener el tema
 
     const handleCopy = (text) => {
         navigator.clipboard.writeText(text);
@@ -33,16 +36,19 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
         <Box
             component="footer"
             sx={{
-                color: "whitesmoke",
+                color: theme.colors.text,
                 py: 2,
-                px: 10,
+                px: { xs: 2, md: 10 },
                 mt: 4,
-                mx: 30,
+                mx: { xs: 2, md: 30 },
                 textAlign: "center",
-                backgroundImage: 'linear-gradient(to top, #16222A 100%, rgb(37, 62, 74) 10%)',
+                background: theme.colors.background,
                 borderBottomLeftRadius: "40px",
                 borderBottomRightRadius: "40px",
-                boxShadow: '1px 2px  rgba(26, 161, 51, 0.5)',
+                borderTop: `1px solid ${theme.colors.primary}`,
+                borderBottom: `1px solid ${theme.colors.primary}`,
+                borderLeft: `6px dashed ${theme.colors.primary}`,
+                borderRight: `6px dashed ${theme.colors.primary}`
             }}
         >
             <Typography variant="h6" gutterBottom>
@@ -67,9 +73,9 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
                     <Typography variant="body1">{notification}</Typography>
                 </Box>
             )}
-            <Grid container spacing={1} sx={{ justifyContent: "center" }}>
+            <Grid container spacing={1} sx={{ display: "flex", justifyContent: "space-between" }}>
                 {/* Usuarios válidos */}
-                <Grid item xs={12} lg={6} >
+                <Grid size={{ xs: 12, lg: 8 }} >
                     <Typography variant="subtitle1" sx={{ mb: 1 }}>
                         Usuarios válidos
                     </Typography>
@@ -84,8 +90,8 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
                                     alignItems: "center",
                                     mb: 1,
                                     p: 2,
-                                    bgcolor: "background.paper",
-                                    color: "teal",
+                                    bgcolor: theme.colors.bgcolor, // Usar la paleta del tema
+                                    color: theme.colors.text, // Usar color de éxito
                                     borderRadius: 2,
                                 }}
                             >
@@ -96,7 +102,7 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
                                             sx={{ display: "inline", cursor: "pointer", mr: 1 }}
                                             onClick={() => handleCopy(user.username)}
                                         >
-                                            Usuario: <strong style={{ display: "inline", cursor: "pointer", mr: 1, border: "1px solid green", borderRadius: "4px", padding: "3px" }}>{user.username}</strong>
+                                            Usuario: <strong>{user.username}</strong>
                                         </Typography>
                                     </Tooltip>
                                     <Tooltip title="Copiar contraseña">
@@ -105,7 +111,7 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
                                             sx={{ display: "inline", cursor: "pointer", ml: 1 }}
                                             onClick={() => handleCopy(user.password)}
                                         >
-                                            Contraseña: <strong style={{ display: "inline", cursor: "pointer", mr: 1, border: "1px solid green", borderRadius: "4px", padding: "3px" }}>{user.password}</strong>
+                                            Contraseña: <strong>{user.password}</strong>
                                         </Typography>
                                     </Tooltip>
                                 </Box>
@@ -123,7 +129,7 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
                 </Grid>
 
                 {/* Usuario inválido */}
-                <Grid item xs={12} lg={6} >
+                <Grid size={{ xs: 12, lg: 4 }} >
                     <Typography variant="subtitle1" sx={{ mb: 1 }}>
                         Usuario incorrecto
                     </Typography>
@@ -138,9 +144,9 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
                                     alignItems: "center",
                                     mb: 1,
                                     p: 2,
-                                    bgcolor: "background.paper",
+                                    bgcolor: theme.colors.background, // Usar la paleta del tema
+                                    color: "darkred", // Usar color de error
                                     borderRadius: 2,
-                                    color: "darkred"
                                 }}
                             >
                                 <Box>
@@ -150,7 +156,7 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
                                             sx={{ display: "inline", cursor: "pointer", mr: 1 }}
                                             onClick={() => handleCopy(user.username)}
                                         >
-                                            Usuario: <strong style={{ display: "inline", cursor: "pointer", mr: 1, border: "1px solid darkred", borderRadius: "4px", padding: "3px" }}>{user.username}</strong>
+                                            Usuario: <strong>{user.username}</strong>
                                         </Typography>
                                     </Tooltip>
                                     <Tooltip title="Copiar contraseña">
@@ -159,7 +165,7 @@ const Footer = ({ setUsername, setPassword, setErrorLoginMessage }) => {
                                             sx={{ display: "inline", cursor: "pointer", ml: 1 }}
                                             onClick={() => handleCopy(user.password)}
                                         >
-                                            Contraseña: <strong style={{ display: "inline", cursor: "pointer", mr: 1, border: "1px solid darkred", borderRadius: "4px", padding: "3px" }}>{user.password}</strong>
+                                            Contraseña: <strong>{user.password}</strong>
                                         </Typography>
                                     </Tooltip>
                                 </Box>

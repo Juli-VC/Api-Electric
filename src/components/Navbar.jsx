@@ -13,13 +13,16 @@ import Tooltip from "@mui/material/Tooltip";
 import MenuItem from "@mui/material/MenuItem";
 import AdbIcon from "@mui/icons-material/Adb";
 import { useAuth } from "../context/AuthContext";
-import { useNavigate } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useTheme } from "../theme/ThemeProvider";
 
 
 
 function ResponsiveAppBar() {
     const navigate = useNavigate();
+    const location = useLocation();
     const { user, logout } = useAuth();
+    const customTheme = useTheme();
 
     const [anchorElNav, setAnchorElNav] = React.useState(null);
     const [anchorElUser, setAnchorElUser] = React.useState(null);
@@ -74,11 +77,17 @@ function ResponsiveAppBar() {
             sx={{
                 margin: '0 auto',
                 width: '55%',
-                backgroundImage: 'linear-gradient(to bottom, #3A6073, #16222A)',
                 mt: 'calc(var(--template-frame-height, 0px) + 18px)',
-                borderTopLeftRadius: "40px",
-                borderTopRightRadius: "40px",
-                boxShadow: '-1px -2px  rgba(26, 161, 51, 0.5)',
+                // backgroundImage: 'linear-gradient(to bottom, #3A6073, #16222A)',
+                // borderTopLeftRadius: "40px",
+                // borderTopRightRadius: "40px",
+                // boxShadow: '-1px -2px  rgba(26, 161, 51, 0.5)',
+                background: customTheme.theme.colors.navbsMiniBgColor,
+                borderRadius: "90px",
+                borderTop: `1px solid ${customTheme.theme.colors.primary}`,
+                borderBottom: `1px solid ${customTheme.theme.colors.primary}`,
+                borderLeft: `8px dashed ${customTheme.theme.colors.primary}`,
+                borderRight: `8px dashed ${customTheme.theme.colors.primary}`,
             }}>
             <Container maxWidth="lg">
                 <Toolbar disableGutters variant="dense">
@@ -139,12 +148,16 @@ function ResponsiveAppBar() {
                     </Box>
 
                     {/* Menú escritorio */}
-                    <Box sx={{ flexGrow: 1, display: { xs: "none", lg: "flex" } }}>
+                    <Box sx={{ flexGrow: 1, display: { xs: "none", lg: "flex" }, justifyContent: "center" }}>
                         {pages.map((page) => (
                             <Button
                                 key={page.label}
                                 onClick={() => handleNavigation(page.path)}
-                                sx={{ my: 2, color: "white", display: "block" }}
+                                sx={{
+                                    my: 2, color: "white", display: "block",
+                                    borderBottom: location.pathname === page.path ? `3px dashed ${customTheme.theme.colors.primary}` : "none",
+                                }}
+
                             >
                                 {page.label}
                             </Button>

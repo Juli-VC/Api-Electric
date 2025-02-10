@@ -20,7 +20,7 @@ function AppContent() {
   const [errorLoginMessage, setErrorLoginMessage] = useState("");
 
   useEffect(() => {
-    document.body.style.backgroundColor = theme.colors.background;
+    document.body.style.background = theme.colors.background;
     document.body.style.color = theme.colors.text;
   }, [theme]);
 
@@ -57,7 +57,7 @@ function AppContent() {
           }
         />
       </Routes>
-      <Footer />
+      {/* <Footer /> */}
     </Router>
   );
 }

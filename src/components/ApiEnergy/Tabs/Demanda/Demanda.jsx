@@ -39,16 +39,18 @@ export default function Demanda() {
                 </Box>
             </Grid>
 
+            <Grid size={{ xs: 12, md: 11 }} sx={{ display: "flex", justifyContent: "center", }}>
+                <CardFeature sx={{
+                    maxWidth: 1000, maxHeight: 500, paddingBottom: "80px", width: "100%"
+                }} cardContent={<Demanda_Variation selectedDate={selectedDate} />} />
+            </Grid>
+
             <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex", justifyContent: "center", }}>
-                <CardFeature sx={{ minHeight: "500px", minWidth: "400px", maxHeight: "500px", maxWidth: "none", }} cardContent={<Demanda_PotenciaInstaladaChart selectedDate={selectedDate} />} />
+                <CardFeature sx={{ minHeight: "500px", minWidth: "600px", maxHeight: "500px", maxWidth: "none", }} cardContent={<Demanda_PotenciaInstaladaChart selectedDate={selectedDate} />} />
             </Grid>
 
             <Grid size={{ xs: 12, md: 5 }} sx={{ display: "flex", justifyContent: "center", }}>
                 <CardFeature />
-            </Grid><Grid size={{ xs: 12, md: 11 }} sx={{ display: "flex", justifyContent: "center", }}>
-                <CardFeature sx={{
-                    maxWidth: 1000, maxHeight: 500, paddingBottom: "80px", width: "100%"
-                }} cardContent={<Demanda_Variation selectedDate={selectedDate} />} />
             </Grid>
             <Grid size={{ xs: 12, md: 6 }} sx={{ display: "flex", justifyContent: "center", }}>
                 <CardFeature />
